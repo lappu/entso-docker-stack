@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: entso
+      MYSQL_DATABASE: entso
+      MYSQL_USER: entso
+      MYSQL_PASSWORD: entso
+    networks:
+      - entso
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "entso", "-pentso"]
+      timeout: 5s
+      retries: 10
+
+  update_daemon:
+    build:
+      context: ./update_daemon
+    networks:
+      - entso
+    restart: always
+    environment:
+      - ENTSO_API_KEY
+      - MQTT_BROKER_HOST
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  # http_server:
+  #   build:
+  #     context: ./http_server/Dockerfile
+  #     # args:
+  #     #   INBOUND_PORT: 8080 # Specify inbound port as a build argument
+  #   ports:
+  #     - "8080:8080" # Map inbound port to host
+  #   networks:
+  #     - entso
+  #   restart: always
+
+networks:
+  entso:
