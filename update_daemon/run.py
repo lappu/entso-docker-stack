@@ -28,7 +28,7 @@ MQTT_TOPIC_TODAY = "electricity/price/today"
 MQTT_TOPIC_TOMORROW = "electricity/price/tomorrow"
 MQTT_TOPIC_HOURLY = "electricity/price/current_hour"
 
-client = EntsoePandasClient(api_key=KEY)
+client = EntsoePandasClient(api_key=ENTSO_API_KEY)
 
 def today():
     return datetime.date.today()
