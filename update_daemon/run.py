@@ -20,7 +20,7 @@ import db
 
 
 ENTSO_API_KEY = os.environ['ENTSO_API_KEY']
-MQTT_BROKER_HOST= os.enivron.get("MQTT_BROKER_HOST")
+MQTT_BROKER_HOST= os.environ.get("MQTT_BROKER_HOST")
 
 TZ = 'Europe/Helsinki'
 
