@@ -28,6 +28,8 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+    pull_policy: build
+
 
   # http_server:
   #   build:
