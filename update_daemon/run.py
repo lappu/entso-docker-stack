@@ -93,7 +93,7 @@ def publish(topic, data, persist=False):
     client.connect(MQTT_BROKER_HOST)
 
     # Publish the message to the topic
-    client.publish(topic, data)
+    client.publish(topic, data, retain=persist)
 
     # Disconnect from MQTT broker
     client.disconnect()
