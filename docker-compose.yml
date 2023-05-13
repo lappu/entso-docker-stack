@@ -4,6 +4,7 @@ services:
   mysql:
     image: mysql:latest
     restart: always
+    command: --performance-schema=off
     environment:
       MYSQL_ROOT_PASSWORD: entso
       MYSQL_DATABASE: entso
