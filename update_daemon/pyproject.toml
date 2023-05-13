@@ -14,6 +14,8 @@ paho-mqtt = "^1.6.1"
 sqlalchemy = "^2.0.9"
 mysql-connector-python = "^8.0.32"
 schedule = {git = "https://github.com/dbader/schedule.git", rev = "3eac646a8d2658929587d7454bd2c85696df254e"}
+matplotlib = "^3.7.1"
+flask = "^2.2.3"
 
 [tool.poetry.dev-dependencies]
 

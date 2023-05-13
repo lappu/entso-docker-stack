@@ -34,4 +34,29 @@ def get_session():
     return sessionmaker(bind=engine)()
 
 
+def get_data_for_date(start_date):
+    date_start = datetime.datetime.combine(
+        start_date, datetime.time(0, 0)
+    ).replace(tzinfo=zoneinfo.ZoneInfo(TZ))
+
+    # Convert start time to utc for db access
+    date_start = date_start.astimezone(datetime.timezone.utc)
+
+    # Get end time (automatically uses same timezone)
+    date_end = date_start + datetime.timedelta(days=1)
+
+    with db.get_session() as session:
+        items = session.query(db.Price).filter(
+            db.Price.time > date_start).filter(
+                db.Price.time <= date_end)
+
+    times, prices = zip(*[(i.time, i.price) for i in items])
+        
+    series = pd.Series(prices, index=times)
+
+    return series
+        
+    
+
+
 __all__ = ['Price', 'engine', 'get_session']

@@ -17,4 +17,6 @@ RUN /root/.local/bin/poetry install
 # Copy the current directory contents into the container at /app
 COPY . /app
 
-CMD ["/root/.local/bin/poetry", "run", "python", "run.py"]
+ENTRYPOINT ["/root/.local/bin/poetry", "run", "python"]
+
+#CMD ["/root/.local/bin/poetry", "run", "python", "run.py"]
